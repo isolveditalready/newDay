@@ -1,0 +1,17 @@
+.parent {
+  background-color: lightblue;
+  width: 60%;
+  margin: auto;
+}
+
+.child-one {
+  background-color: teal;
+}
+
+.child-two {
+  background-color: orange;
+}
+
+.child-three {
+  background-color: pink;
+}

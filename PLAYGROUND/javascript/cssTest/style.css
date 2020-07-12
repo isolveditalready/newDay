@@ -1,0 +1,19 @@
+h1 {
+  color: red;
+}
+
+#timeParent {
+  position: relative;
+  height: 300px;
+  width: 80%;
+  /*border: solid; */
+  margin: 20px auto;
+}
+
+#time {
+  color: steelblue;
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  font-size: 30px;
+}
