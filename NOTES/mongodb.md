@@ -14,7 +14,7 @@ use admin
 db.createUser(
 {
 user: "admin",
-pwd: 'meisterjimd',
+pwd: 'xxxxxxxxxx',
 roles: [ { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
 }
 )
@@ -69,7 +69,7 @@ roles: [{ role: "read", db: "tour"}]
 db.createUser(
 {
 user:"tracerouteadmin",
-pwd:'meisterjimd',
+pwd:'xxxxxxxxx',
 roles: [ { role:"dbOwner", db:"traceroutedb"},"readWrite"]
 }
 
@@ -108,7 +108,7 @@ use traceroutedb
 db.createUser(
 {
 user: "cpmonuser",
-pwd: "meisterjimd",
+pwd: "xxxxxxxx",
 roles: [ { role: "readWrite", db: "traceroutedb" },
 { role: "read", db: "reporting" } ]
 }
