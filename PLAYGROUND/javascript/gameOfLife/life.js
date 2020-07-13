@@ -4,11 +4,6 @@
     this.seed = seed;
     this.height = seed.length;
     this.width = seed[0].length;
-    let newarrayme = [
-      [1, 2],
-      [3, 4],
-      [5, 6]
-    ]
 
     this.prevBoard = []
     this.board = cloneArray(seed)
@@ -23,29 +18,36 @@
   _.prototype = {
     next: function () {
       this.prevBoard = cloneArray(this.board)
-      console.log("1__________________________")
-      console.log(this.prevBoard)
-      console.log("x__________________________")
-      console.log("we got next")
 
-      for (let y = 0; y < this.height; y++) {
-        for (let x = 0; x < this.width; x++) {
-          let neighbors = this.aliveNeighbors(this.prevBoard, x, y)
+      for (var y = 0; y < this.height; y++) {
+        for (var x = 0; x < this.width; x++) {
+          var neighbors = this.aliveNeighbors(this.prevBoard, x, y)
+          var alive = !!this.board[y][x]
+
+          if (alive) {
+            if (neighbors < 2 || neighbors > 3) {
+              this.board[y][x] = 0;
+            }
+          } else {
+            if (neighbors === 3) {
+              this.board[y][x] = 1;
+            }
+          }
         }
       }
     },
 
     aliveNeighbors: function (array, x, y) {
-      console.dir(array)
-      console.log(array[1][2])
-      console.log("x is " + x)
-      console.log("y is " + y)
-      console.log(typeof array)
-      var neighbors = [
-        array[y - 1][x - 1], array[y - 1][x], array[y - 1][x + 1],
+      var prevRow = array[y - 1] || [];
+      var nextRow = array[y + 1] || [];
+
+      return [
+        prevRow[x - 1], prevRow[x], prevRow[x + 1],
         array[y][x - 1], array[y][x + 1],
-        array[y + 1][x - 1], array[y + 1][x], array[y + 1][x + 1]
-      ]
+        nextRow[x - 1], nextRow[x], nextRow[x + 1]
+      ].reduce(function (prev, cur) {
+        return prev + +!!cur;
+      }, 0);
     },
 
     toString: function () {
@@ -63,16 +65,15 @@
   }
 })();
 
-var game = new Life([
-  [0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0],
-  [0, 0, 0, 0, 0],
-]);
-console.log("_____________")
-console.log(game + ' ')
-console.log("_____________")
-console.log(game + ' ')
-game.next()
-console.log(game)
+// var game = new Life([
+//   [0, 0, 0, 0, 0],
+//   [0, 0, 1, 0, 0],
+//   [0, 0, 1, 0, 0],
+//   [0, 0, 1, 0, 0],
+//   [0, 0, 0, 0, 0],
+// ]);
+
+// console.log(game + '');
+// game.next();
+// console.log(game + '');
+// game.next();
