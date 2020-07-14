@@ -15,7 +15,6 @@ function $(selector, container) {
     })
 
     $('#autoplay').addEventListener('change', function () {
-        console.log('yes')
         buttons.next.textContent = this.checked ? 'Start' : 'Next';
         lifeView.autoplay = this.checked
     })

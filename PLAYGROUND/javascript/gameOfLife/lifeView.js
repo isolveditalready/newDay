@@ -9,7 +9,6 @@
 
     _.prototype = {
         createGrid: function () {
-            console.log("CREATE")
             var me = this;
             var fragment = document.createDocumentFragment();
             this.grid.innerHTML = '';
@@ -31,14 +30,8 @@
                 fragment.appendChild(row);
             }
             this.grid.addEventListener('change', function (e) {
-                console.log("checke")
-                console.log(this)
-                console.log("checke2")
                 if (e.target.nodeName.toLowerCase() == 'input') {
-                    console.log("checke input")
-                    console.dir(e)
                     me.started = false;
-                    console.log(`mestarted is now ${me.started}`)
                 }
             })
 
@@ -54,27 +47,18 @@
         },
 
         play: function () {
-            console.log("xxxxxxxxxx")
-            console.log("xxxxxxxxxx")
             this.game = new Life(this.boardArray);
             this.started = true;
         },
 
         next: function () {
             var me = this;
-            console.log("did u get do ")
-            console.log(`in next thistarted is ${this.started}`)
 
             if (!this.started || this.game) {
                 this.play();
             }
-            console.log(this.started)
-            console.log(this)
-            console.log("game next???")
             this.game.next();
-            console.log("game next???????????????????????")
             var board = this.game.board;
-            console.log("do i ever get here???")
 
             for (var y = 0; y < this.size; y++) {
                 for (var x = 0; x < this.size; x++) {
