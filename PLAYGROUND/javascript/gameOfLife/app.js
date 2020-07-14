@@ -7,6 +7,7 @@ function $(selector, container) {
 (function () {
     var buttons = {
         next: $('button.next')
+        // 
     }
 
     buttons.next.addEventListener('click', function () {
