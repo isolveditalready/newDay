@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="ul_test"></ul>
+    <script>
+        var ul = document.getElementById("ul_test");
+
+
+        // First. add a document fragment:
+
+
+        (function () {
+            var frag = document.createDocumentFragment();
+
+
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Document Fragment"));
+            frag.appendChild(li);
+
+            ul.appendChild(frag);
+            console.log(2);
+        }());
+
+        (function () {
+            // var div = document.createElement("div");
+
+
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode("Inside Div"));
+            //div.appendChild(li);
+
+            ul.appendChild(li);
+        }());
+
+        (function () {
+            function create(htmlStr) {
+                var frag = document.createDocumentFragment(),
+                    temp = document.createElement('div');
+                console.log("_______________")
+                console.log(temp)
+                console.log("_______________")
+                temp.innerHTML = htmlStr;
+                console.log(temp.innerHTML)
+                console.log("_______________")
+                console.log(temp.firstChild)
+                console.log("_______________")
+                while (temp.firstChild) {
+                    frag.appendChild(temp.firstChild);
+                }
+                return frag;
+            }
+
+            var fragment = create('<div>Hello!</div><p>...</p>');
+            console.log(fragment)
+            // You can use native DOM methods to insert the fragment:
+            document.body.appendChild(fragment);
+        })()
+    </script>
+</body>
+
+</html>

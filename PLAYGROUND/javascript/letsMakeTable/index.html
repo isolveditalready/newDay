@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        h1 {
+            margin-bottom: .5em 0 1em;
+        }
+
+        table {
+            margin: auto;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid gray;
+        }
+
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: block;
+            width: 20px;
+            height: 20px;
+            border: 0;
+
+            background: white;
+        }
+
+        input[type="checkbox"]:checked {
+            background: black;
+            box-shadow: 0 0 0 99px black inset;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="grid"></table>
+    <script>
+        function $(selector) {
+            return document.querySelector(selector)
+        }
+
+        var _ = buildTable = function (table, size) {
+            console.log("not a fucking chance")
+            this.grid = table;
+            this.size = size;
+            this.started = false;
+            this.createGrid2();
+            this.bullshit();
+        }
+
+        _.prototype = {
+            createGrid: function () {
+                for (var y = 0; y < this.size; y++) {
+                    for (var x = 0; x < this.size; x++) {
+                        console.log(x + ":" + y)
+                    }
+                }
+            },
+            createGrid2: function () {
+                var me = this;
+                var fragment = document.createDocumentFragment();
+                this.grid.innerHTML = '';
+                this.checkboxes = []
+
+                for (var y = 0; y < this.size; y++) {
+                    var row = document.createElement('tr');
+                    this.checkboxes[y] = [];
+
+                    for (var x = 0; x < this.size; x++) {
+                        var cell = document.createElement('td');
+                        var checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        this.checkboxes[y][x] = checkbox;
+
+                        cell.appendChild(checkbox);
+                        row.appendChild(cell)
+                    }
+                    fragment.appendChild(row);
+                }
+                console.log(fragment)
+                this.grid.appendChild(fragment)
+            },
+            bullshit: function () {
+                console.log('BS')
+            }
+        }
+
+        var table = document.getElementById('grid')
+        console.log(table)
+
+        function checkChecked(e) {
+            console.log("ok ")
+            console.log(e)
+            console.log(e.target.outerHTML)
+        }
+
+        table.addEventListener('change', checkChecked)
+        // var checkbox = document.querySelector('input')
+        // checkbox.addEventListener('change', function () {
+        //     console.log(`${this} was checked`)
+        // })
+
+        var newTable = new buildTable(document.getElementById('grid'), 10)
+    </script>
+</body>
+
+</html>

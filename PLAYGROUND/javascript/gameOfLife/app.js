@@ -1,14 +1,21 @@
-var lifeView = new LifeView(document.getElementById('grid'), 12)
+var lifeView = new LifeView(document.getElementById('grid'), 24);
 
 function $(selector, container) {
     return (container || document).querySelector(selector);
 }
 
-var next = $('button.next')
+(function () {
+    var buttons = {
+        next: $('button.next')
+    }
 
-next.addEventListener('click', function () {
-    lifeView.next();
-    setInterval(function () {
+    buttons.next.addEventListener('click', function () {
         lifeView.next();
-    }, 500)
-})
+    })
+
+    $('#autoplay').addEventListener('change', function () {
+        console.log('yes')
+        buttons.next.textContent = this.checked ? 'Start' : 'Next';
+        lifeView.autoplay = this.checked
+    })
+})();
