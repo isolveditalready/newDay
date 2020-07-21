@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var basketModule = (function () {
+            console.log('matrix')
+            var basket = []
+
+            function doSomethingPrivate() {
+                console.log('this is private do somethign')
+            }
+
+            function doSomethingElsePrivate() {
+                console.log("do something else private")
+            }
+
+            return {
+                addItem: function (values) {
+                    basket.push(values)
+                },
+
+                getItemCount: function () {
+                    return basket.length;
+                },
+                showBasket: function () {
+                    console.dir(basket);
+                },
+                doSomething: doSomethingPrivate,
+                getTotal: function () {
+                    var itemCount = this.getItemCount(),
+                        total = 0;
+                    while (itemCount--) {
+                        total += basket[itemCount].price;
+                    }
+                    return total;
+                }
+            }
+        })();
+    </script>
+</body>
+
+</html>

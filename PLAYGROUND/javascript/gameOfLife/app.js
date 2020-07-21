@@ -18,4 +18,4 @@ function $(selector, container) {
         buttons.next.textContent = this.checked ? 'Start' : 'Next';
         lifeView.autoplay = this.checked
     })
-})();
+        console.log('yes')

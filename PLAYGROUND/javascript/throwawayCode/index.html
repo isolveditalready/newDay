@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let goodPairs = function (arry) {
+        //     let pairsArry = [];
+
+        //     // get the array
+        //     for (let i = 0; i < arry.length; ++i) {
+        //         let focus = arry[i];
+        //         let originalIndex = i;
+        //         for (let n = ++originalIndex; n < arry.length; ++n) {
+        //             if (arry[n] === focus) {
+        //                 pairsArry.push([i, n])
+        //             }
+        //         }
+
+        //     }
+        //     return pairsArry
+        // }
+
+        // var shuffle = function(nums,n) {
+        //     var arryReturn = []
+        //     var endPosition = n;
+
+        //     for (let i=0; i<endPosition; ++i) {
+        //         let x = nums[i];
+        //         let y = nums[n];
+        //         ++n;
+        //         arryReturn.push(x,y)
+        //     }
+        //     return arryReturn;
+        // }
+
+        function returnBig(arry) { // define big number
+            let bigNum = 0;
+            let arryLenthMinusOne = arry.length - 1;
+            console.log(`arryLenMinusOne is ${arryLenthMinusOne}`)
+            let notFirstTime = ''
+
+            for (let i = 0; i < arry.length; ++i) {
+                let currentNum = arry[i]
+
+                if (notFirstTime) {
+                    bigNum = currentNum;
+                    notFirstTime = 'TRUE'
+                } else {
+                    bigNum = bigNum >= currentNum ? bigNum : currentNum;
+                }
+            }
+            return bigNum;
+        }
+
+        var kidsWithCandies = function (candies, extraCandies) {
+            let bigNum = returnBig(candies)
+            let arryReturn = []
+            for (let i = 0; i < candies.length; i++) {
+                arryReturn.push((candies[i] + extraCandies) >= bigNum ? 'true' : 'false');
+            }
+            return arryReturn;
+        }
+    </script>
+</body>
+
+</html>
