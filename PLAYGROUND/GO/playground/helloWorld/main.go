@@ -1,22 +1,45 @@
 package main
 
 import (
+	"./handlers"
+	"context"
 	"log"
 	"net/http"
+	"os"
+	"os/signal"
+	"time"
 )
 
-const message = "go go"
-
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(message))
+	l := log.New(os.Stdout, "product-api", log.LstdFlags)
+	ph := handlers.NewProducts(l)
 
-	})
-	err := http.ListenAndServe(":8080", mux)
-	if err != nil {
-		log.Fatalf("server failed to start : %v", err)
+	sm := http.NewServeMux()
+	sm.Handle("/", ph)
+
+	s := &http.Server{
+		Addr:         ":9090",
+		Handler:      sm,
+		IdleTimeout:  120 * time.Second,
+		ReadTimeout:  1 * time.Second,
+		WriteTimeout: 1 * time.Second,
 	}
+
+	go func() {
+		err := s.ListenAndServe()
+		if err != nil {
+			l.Fatal(err)
+		}
+	}()
+
+	sigChan := make(chan os.Signal)
+	signal.Notify(sigChan, os.Interrupt)
+	signal.Notify(sigChan, os.Kill)
+
+	sig := <-sigChan
+	l.Println("Recived terminate, graceful shutdown", sig)
+
+	s.ListenAndServe()
+	tc, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	s.Shutdown(tc)
 }

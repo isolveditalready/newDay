@@ -1,17 +1,54 @@
-.parent {
-  background-color: lightblue;
-  width: 60%;
-  margin: auto;
+@media(min-width:768px) {
+  .parent {
+    display: flex;
+    /*align-items: flex-end;*
+  flex-direction: column;*/
+  }
+
+  .parent2 {
+    display: flex;
+    /* comment */
+    justify-content: space-between;
+  }
+
+}
+
+.parent3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.parent div,
+.parent2 div,
+.parent3 div {
+  border: 1px #ccc solid;
+  padding: 10px;
 }
 
 .child-one {
   background-color: teal;
+  flex: 2;
+  order: 2;
 }
 
 .child-two {
   background-color: orange;
+  flex: 1;
+  order: 1;
 }
 
 .child-three {
   background-color: pink;
+  flex: 1;
+  order: 3
+}
+
+.child-one2 {
+  flex-basis: 27%;
+}
+
+.child-one3 {
+  flex-basis: 2%;
 }

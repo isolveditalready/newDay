@@ -1,3 +1,7 @@
+* {
+  boxing-sizing: border-box;
+}
+
 h1 {
   color: red;
 }
@@ -5,15 +9,15 @@ h1 {
 #timeParent {
   position: relative;
   height: 300px;
-  width: 80%;
+  width: 100%;
   /*border: solid; */
-  margin: 20px auto;
+  margin: 0px auto;
 }
 
 #time {
   color: steelblue;
   position: absolute;
   top: 50%;
-  left: 10%;
-  font-size: 30px;
+  left: 0%;
+  font-size: 128px;
 }

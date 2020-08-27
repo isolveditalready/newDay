@@ -4,7 +4,7 @@ let content = (function () {
   console.log("yhahooo");
   let datetime = setInterval(() => {
     let newDate = new Date();
-    const MonthCurrent = String(newDate.getMonth()).padStart(2, "0");
+    const MonthCurrent = String(newDate.getMonth() + 1).padStart(2, "0");
     const DateCurrent = String(newDate.getDate()).padStart(2, "0");
     const HourCurrent = String(newDate.getHours()).padStart(2, "0");
     const MinCurrent = String(newDate.getMinutes()).padStart(2, "0");
@@ -26,21 +26,6 @@ let content = (function () {
       SecCurrent +
       ":" +
       MiliCurrent;
-    console.log(
-      MonthCurrent +
-        "/" +
-        DateCurrent +
-        " " +
-        HourCurrent +
-        ":" +
-        MinCurrent +
-        ":" +
-        SecCurrent +
-        ":" +
-        MiliCurrent +
-        MiliCurrent +
-        MiliCurrent
-    );
     clockId.innerHTML = newformattedDate;
   }, 40);
 })();
